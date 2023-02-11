@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>隐藏遮罩模板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        .box {
+            /* 子绝父相 */
+            position: relative;
+            width: 450px;
+            height: 320px;
+            /* 上下间距50px，左右居中（盒子居中） */
+            margin: 50px auto;
+        }
+
+        .box img {
+            /* 使图片和box长宽一样，长宽都要设置，只设置一个图片会等比例缩放，如果和大盒子不一样大会溢出 */
+            width: 100%;
+            height: 100%;
+        }
+
+        .mask {
+            /* 普通状况遮罩隐藏 */
+            display: none;
+            /* 给mask加绝对定位 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* 透明度为0.4，no-repeat不平铺，水平居中，垂直默认居中 */
+            background: rgba(0, 0, 0, .4) url(images/arr.png) no-repeat center;
+        }
+
+        /* 当我们鼠标经过了 土豆这个盒子，就让里面遮罩层显示出来 */
+        .box:hover .mask {
+            /* 显示元素（和转换为块级元素的代码一样） */
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <!-- mask表示黑色半透明的遮罩，因为要让其压住下面的图片，所以用脱标的绝对定位 -->
+        <div class="mask"></div>
+        <img src="images/img.jpg" alt="">
+    </div>
+</body>
+
+</html>
